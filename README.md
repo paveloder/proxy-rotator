@@ -22,7 +22,9 @@ in seconds to retrieve the given URL, we will ignore it.
 Default values:
 
 CHECK_URL = http://www.google.com
+
 CHECK_FOR = Google Inc.
+
 PROXY_TIMEOUT = 10.0
 
 ## Usage  
