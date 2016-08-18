@@ -1,13 +1,14 @@
 import asyncio
 import json
 import re
+import os
 from time import sleep, time
 from aiohttp import ClientSession, ProxyConnector, Timeout
 import requests
 
 number_of_proxies = 30
 request_proxies = 50
-timeout = 10.0
+timeout = float(os.environ.get("PROXY_TIMEOUT")) or 10.0
 
 proxies = []
 new_proxies = []
@@ -15,8 +16,8 @@ ips = set()
 
 proxy_provider_url = "http://gimmeproxy.com/api/getProxy?get=true&" +\
                      "protocol=http&supportsHttps=true&maxCheckPeriod=3600"
-test_url = 'https://www.immobilienscout24.de'
-test_for = 'IS24'
+test_url = os.environ.get("CHECK_URL")
+test_for = os.environ.get("CHECK_FOR")
 
 async def fetch(proxy):
     conn = ProxyConnector(proxy=proxy)
