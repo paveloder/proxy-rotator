@@ -47,6 +47,8 @@ for line in open("/scripts/proxies.txt"):
         s += results
         hostCount += 1
 
+print(s)
+
 with open("/etc/haproxy/haproxy.cfg", "w") as text_file:
     text_file.write(s)
 with open("/scripts/haproxy.cfg", "w") as text_file:

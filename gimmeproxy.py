@@ -7,7 +7,7 @@ from aiohttp import ClientSession, ProxyConnector, Timeout
 import requests
 
 number_of_proxies = 30
-request_proxies = 50
+request_proxies = 25
 timeout = float(os.environ.get("PROXY_TIMEOUT")) or 10.0
 
 proxies = []

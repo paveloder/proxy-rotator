@@ -9,6 +9,6 @@ do
 	python /scripts/parse_proxy_list.py
 	service haproxy restart
 	iptables -D INPUT -p tcp --dport $PORT 5566 -j DROP
-	echo "Sleeping for 5 minutes"
-	sleep 300
+	echo "Sleeping for 10 minutes"
+	sleep 600
 done
