@@ -1,11 +1,14 @@
 FROM python:3.5
 MAINTAINER Johannes Gontrum <https://github.com/jgontrum>
 
-ENV CHECK_URL http://www.google.com
-ENV CHECK_FOR Google Inc.
-ENV PROXY_TIMEOUT 10.0
+ENV CHECK_URL "https://www.google.com"
+ENV CHECK_FOR "initHistory"
+ENV PROXY_TIMEOUT "10.0"
+ENV PROXY_FILE "/scripts/files/proxies.txt"
 
 RUN mkdir -p /scripts
+RUN mkdir -p /scripts/files
+RUn touch /scripts/files/proxies.txt
 
 COPY gimmeproxy.py /scripts/gimmeproxy.py
 COPY parse_proxy_list.py /scripts/parse_proxy_list.py

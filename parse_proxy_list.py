@@ -36,9 +36,12 @@ frontend rotating_proxies
 backend tor
   balance roundrobin """
 
+import os
+
 hostCount = 1
 
-for line in open("/scripts/proxies.txt"):
+filepath = os.environ.get("PROXY_FILE") or "./proxies.txt"
+for line in open(filepath):
     line = line.strip()
     if len(line) > 0:
         results = ("\nserver srv{hostCount} {line} " +
@@ -46,8 +49,6 @@ for line in open("/scripts/proxies.txt"):
                                                         line=line)
         s += results
         hostCount += 1
-
-print(s)
 
 with open("/etc/haproxy/haproxy.cfg", "w") as text_file:
     text_file.write(s)
