@@ -2,8 +2,8 @@
 Dockerfile for Proxy Rotation  
 
 1) Pulls proxies from GimmeProxy.com  
-2) Test the proxies against a configurable URL
-3) Rotate the proxies using HAProxy (round robin)  
+2) Test the proxies against a configurable URL  
+3) Rotate the proxies using HAProxy (round robin)   
 4) Repeat every 5 minutes  
 5) Expose port 5566 as a proxy
 
