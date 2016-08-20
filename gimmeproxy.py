@@ -102,7 +102,9 @@ if __name__ == '__main__':
     test_proxy_servers()
     sort_proxies()
 
+    new = set([proxy['ipPort'].strip() for proxy in proxies])
+
     with open(filepath, 'w') as f:
-        for proxy in proxies:
-            f.write("%s\n" % proxy['ipPort'])
-    print("Saved %s new proxies." % len(proxies))
+        for proxy in new:
+            f.write("%s\n" % proxy)
+    print("Saved %s new proxies." % len(new))

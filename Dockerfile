@@ -19,7 +19,7 @@ COPY run.sh /scripts/run.sh
 RUN echo deb http://httpredir.debian.org/debian jessie-backports main | sed 's/\(.*\)-sloppy \(.*\)/&@\1 \2/' | tr @ '\n' | tee /etc/apt/sources.list.d/backports.list
 
 RUN apt-get update
-RUN apt-get install -y iptables zlib1g zlib1g-dev haproxy -t jessie-backports --fix-missing
+RUN apt-get install -y --force-yes iptables zlib1g zlib1g-dev haproxy -t jessie-backports --fix-missing
 RUN apt-get clean
 
 RUN pip install -r /scripts/requirements.txt
@@ -28,4 +28,4 @@ RUN chmod -R 777 /scripts
 RUN chmod -R 777 /etc/haproxy
 
 CMD ["/scripts/run.sh"]
-EXPOSE 5566
+EXPOSE 5566 19191

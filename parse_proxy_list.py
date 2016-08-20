@@ -28,6 +28,15 @@ defaults
         #clitimeout 50000
         #srvtimeout 50000
 
+listen stats :19191
+        mode http
+        stats enable
+        stats hide-version
+        stats scope .
+        stats realm Haproxy\ Statistics
+        stats uri /
+        stats auth jgontrum:secretz
+
 frontend rotating_proxies
   bind *:5566
   default_backend tor
