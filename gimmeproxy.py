@@ -7,7 +7,7 @@ from aiohttp import ClientSession, ProxyConnector, Timeout
 import requests
 
 number_of_proxies = 100
-request_proxies = 20
+request_proxies = 15
 timeout = os.environ.get("PROXY_TIMEOUT")
 timeout = float(timeout) if timeout else 10.0
 filepath = os.environ.get("PROXY_FILE") or "./proxies.txt"

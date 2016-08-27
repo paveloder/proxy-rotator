@@ -8,13 +8,13 @@ ENV PROXY_FILE "/scripts/files/proxies.txt"
 
 RUN mkdir -p /scripts
 RUN mkdir -p /scripts/files
-RUn touch /scripts/files/proxies.txt
 
 COPY gimmeproxy.py /scripts/gimmeproxy.py
 COPY parse_proxy_list.py /scripts/parse_proxy_list.py
 COPY haproxy.cfg /scripts/haproxy.cfg
 COPY requirements.txt /scripts/requirements.txt
 COPY run.sh /scripts/run.sh
+COPY proxies.txt /scripts/files/proxies.txt
 
 RUN echo deb http://httpredir.debian.org/debian jessie-backports main | sed 's/\(.*\)-sloppy \(.*\)/&@\1 \2/' | tr @ '\n' | tee /etc/apt/sources.list.d/backports.list
 
@@ -28,4 +28,4 @@ RUN chmod -R 777 /scripts
 RUN chmod -R 777 /etc/haproxy
 
 CMD ["/scripts/run.sh"]
-EXPOSE 5566 19191
+EXPOSE 5566
