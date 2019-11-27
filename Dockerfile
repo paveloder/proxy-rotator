@@ -2,7 +2,7 @@ FROM python:3.5
 MAINTAINER Johannes Gontrum <https://github.com/jgontrum>
 
 ENV CHECK_URL "https://www.google.com"
-ENV CHECK_FOR "initHistory"
+ENV CHECK_FOR "<title>Google</title>"
 ENV PROXY_TIMEOUT "10.0"
 ENV PROXY_FILE "/scripts/files/proxies.txt"
 

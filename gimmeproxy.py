@@ -19,7 +19,7 @@ ips = set()
 proxy_provider_url = "http://gimmeproxy.com/api/getProxy?get=true&" +\
                      "protocol=http&supportsHttps=true"
 test_url = os.environ.get("CHECK_URL") or "https://www.google.com"
-test_for = os.environ.get("CHECK_FOR") or "initHistory"
+test_for = os.environ.get("CHECK_FOR") or "<title>Google</title>"
 
 async def fetch(proxy):
     conn = ProxyConnector(proxy=proxy)
@@ -29,10 +29,10 @@ async def fetch(proxy):
                 async with session.get(test_url) as r:
                     if r.status == 200:
                         text = str(await r.read())
-                        if re.search(test_for, str(await r.read())):
+                        if re.search(test_for, text):
                             return True
-        except Exception:
-            pass
+        except Exception as e:
+            print(e)
 
 async def test_server(proxy):
     t = time()
@@ -103,7 +103,6 @@ if __name__ == '__main__':
     get_proxy_servers(request_proxies)
     test_proxy_servers()
     sort_proxies()
-
     new = set([proxy['ipPort'].strip() for proxy in proxies])
 
     with open(filepath, 'w') as f:
