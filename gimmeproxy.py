@@ -43,11 +43,12 @@ async def test_server(proxy):
 
 
 def get_proxy_servers(r):
-    responses = [requests.get(proxy_provider_url).text for i in range(r)]
+    responses = [requests.get(proxy_provider_url, proxies={'http': 'http://104.248.33.144:5566'}).text for i in range(r)]
 
     for resp in responses:
         try:
             response = json.loads(resp)
+            print('Response is {}'.format(response))
             if response.get('status') == 429:
                 print("Too many requests :(")
                 continue
@@ -61,7 +62,8 @@ def get_proxy_servers(r):
                 'address': response['curl'],
                 'time': -1,
             })
-        except Exception:
+        except Exception as ex:
+            print(ex)
             continue
 
 
