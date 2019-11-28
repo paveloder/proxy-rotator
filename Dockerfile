@@ -1,8 +1,8 @@
 FROM python:3.5
-MAINTAINER Johannes Gontrum <https://github.com/jgontrum>
+MAINTAINER Pavel Oderyakov
 
-ENV CHECK_URL "https://www.google.com"
-ENV CHECK_FOR "<title>Google</title>"
+ENV CHECK_URL "https://magnit-info.ru/"
+ENV CHECK_FOR "/bitrix/"
 ENV PROXY_TIMEOUT "10.0"
 ENV PROXY_FILE "/scripts/files/proxies.txt"
 

@@ -5,7 +5,7 @@ Dockerfile for Proxy Rotation
 2) Test the proxies against a configurable URL  
 3) Rotate the proxies using HAProxy (round robin)   
 4) Repeat every 5 minutes  
-5) Expose port 5566 as a proxy
+5) Expose port 5577 as a proxy
 
 ## Settings
 
@@ -27,18 +27,40 @@ CHECK_FOR = Google Inc.
 
 PROXY_TIMEOUT = 10.0
 
-## Usage  
-```
-docker pull jgontrum/rotatingproxy
+## Usage
 
-docker run -d --name rotatingproxy -p 127.0.0.0:5566:5566 --privileged jgontrum/rotatingproxy
-
-OR:
-
-docker run --rm --name rotatingproxy -e "CHECK_URL=https://www.immobilienscout24.de" -e "CHECK_FOR=IS24" -e "PROXY_TIMEOUT=10.0" --privileged --net=host jgontrum/rotatingproxy
-```
-
-## Testing
+### Testing
 ```
 curl --proxy 127.0.0.1:5566 http://www.google.com
+```
+
+### Build
+```
+sudo docker build -t proxy-rotator-gimme .
+```
+
+### Run:
+Stop and prune if needed:
+```
+docker stop rotating-proxy
+docker container prune
+```
+Run new made image
+```
+docker run -d --name rotating-proxy -p 5577:5577 --privileged proxy-rotator-gimme
+```
+
+### Parse proxy logs at Docker image:
+```
+docker exec -it rotating-proxy cat /scripts/files/rotatingproxy.log
+```
+
+### Parsed and tested proxies list
+``` 
+docker exec -it rotating-proxy cat /scripts/files/proxies.txt
+```
+
+### What HaProxy config is used?
+```
+docker exec -it rotating-proxy cat /etc/haproxy/haproxy.cfg
 ```
