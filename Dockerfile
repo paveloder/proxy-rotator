@@ -2,7 +2,7 @@ FROM python:3.5
 MAINTAINER Pavel Oderyakov
 
 ENV CHECK_URL "https://5ka.ru/"
-ENV CHECK_FOR "<title>Главная</title>"
+ENV CHECK_FOR "href=fonts/5kaSans/5kaSansDesign-Regular.woff2"
 ENV PROXY_TIMEOUT "10.0"
 ENV PROXY_FILE "/scripts/files/proxies.txt"
 
