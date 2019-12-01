@@ -1,8 +1,8 @@
 FROM python:3.5
 MAINTAINER Pavel Oderyakov
 
-ENV CHECK_URL "https://magnit-info.ru/"
-ENV CHECK_FOR "/bitrix/"
+ENV CHECK_URL "https://5ka.ru/"
+ENV CHECK_FOR "<title>Главная</title>"
 ENV PROXY_TIMEOUT "10.0"
 ENV PROXY_FILE "/scripts/files/proxies.txt"
 
