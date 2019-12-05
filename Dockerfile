@@ -1,8 +1,8 @@
 FROM python:3.5
 MAINTAINER Pavel Oderyakov
 
-ENV CHECK_URL "https://yandex.ru/"
-ENV CHECK_FOR "<title>Яндекс</title>"
+ENV CHECK_URL "https://www.google.com"
+ENV CHECK_FOR "<title>Google</title>"
 ENV PROXY_TIMEOUT "10.0"
 ENV PROXY_FILE "/scripts/files/proxies.txt"
 
