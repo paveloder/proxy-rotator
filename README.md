@@ -55,7 +55,7 @@ docker run -d --name rotating-proxy -p 5577:5577 --privileged proxy-rotator-gimm
 ```
 docker run \
   --env CHECK_URL="https://krasnoeibeloe.ru" \
-  --env CHECK_FOR="<title>Красное&amp;Белое - продажа алкоголя и продуктов питания</title>" \
+  --env CHECK_FOR="Красное" \
   --restart always
   -d --name rotating-proxy -p 5577:5577 \
   --privileged proxy-rotator-gimme
