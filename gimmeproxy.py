@@ -43,7 +43,7 @@ async def test_server(proxy):
 
 
 def get_proxy_servers(r):
-    responses = [requests.get(proxy_provider_url, proxies={}).text for i in range(r)]
+    responses = [requests.get(proxy_provider_url, proxies={}, verify=False).text for i in range(r)]
 
     for resp in responses:
         try:
