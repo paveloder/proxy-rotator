@@ -50,6 +50,18 @@ Run new made image
 docker run -d --name rotating-proxy -p 5577:5577 --privileged proxy-rotator-gimme
 ```
 
+## Run for Krasnoe i Beloe optimized
+
+```
+docker run \
+  --env CHECK_URL="https://krasnoeibeloe.ru" \
+  --env CHECK_FOR="Красное" \
+  --restart always \
+  -d --name rotating-proxy -p 5577:5577 \
+  --privileged proxy-rotator-gimme
+```
+
+
 ### Parse proxy logs at Docker image:
 ```
 docker exec -it rotating-proxy cat /scripts/files/rotatingproxy.log
