@@ -50,6 +50,11 @@ Run new made image
 docker run -d --name rotating-proxy -p 5577:5577 --privileged proxy-rotator-gimme
 ```
 
+Extra filters to gimmeproxy api may be added:
+```bash
+docker run -d --name rotating-proxy -p 5577:5577 -e EXTRA_FILTERS='port=3128' --privileged proxy-rotator-gimme
+```
+
 ## Run for Krasnoe i Beloe optimized
 
 ```
