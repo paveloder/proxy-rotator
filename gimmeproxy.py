@@ -11,13 +11,16 @@ request_proxies = 15
 timeout = os.environ.get("PROXY_TIMEOUT")
 timeout = float(timeout) if timeout else 10.0
 filepath = os.environ.get("PROXY_FILE") or "./proxies.txt"
+extra_filters = os.environ.get('EXTRA_FILTERS', '')
 
 proxies = []
 new_proxies = []
 ips = set()
 
 proxy_provider_url = "https://gimmeproxy.com/api/getProxy?get=true&" +\
-                     "protocol=http&supportsHttps=true"
+                     "protocol=http&supportsHttps=true&{extra_filters}".format(
+                        extra_filters=extra_filters,
+                     )
 test_url = os.environ.get("CHECK_URL") or "https://www.google.com"
 test_for = os.environ.get("CHECK_FOR") or "<title>Google</title>"
 
