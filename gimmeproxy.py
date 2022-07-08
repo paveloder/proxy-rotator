@@ -16,7 +16,7 @@ proxies = []
 new_proxies = []
 ips = set()
 
-proxy_provider_url = "http://gimmeproxy.com/api/getProxy?get=true&" +\
+proxy_provider_url = "https://gimmeproxy.com/api/getProxy?get=true&" +\
                      "protocol=http&supportsHttps=true"
 test_url = os.environ.get("CHECK_URL") or "https://www.google.com"
 test_for = os.environ.get("CHECK_FOR") or "<title>Google</title>"
@@ -43,7 +43,7 @@ async def test_server(proxy):
 
 
 def get_proxy_servers(r):
-    responses = [requests.get(proxy_provider_url, proxies={'http': 'http://104.248.33.144:5566'}).text for i in range(r)]
+    responses = [requests.get(proxy_provider_url, proxies={}).text for i in range(r)]
 
     for resp in responses:
         try:
