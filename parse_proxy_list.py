@@ -50,6 +50,15 @@ for line in open(filepath):
         s += results
         hostCount += 1
 
+for line in open('/scripts/files/constant-proxies.txt'):
+    line = line.strip()
+    if len(line) > 0:
+        results = ("\nserver srv{hostCount} {line} " +
+                   "weight 1 maxconn 100 check").format(hostCount=hostCount,
+                                                        line=line)
+        s += results
+        hostCount += 1
+
 with open("/etc/haproxy/haproxy.cfg", "w") as text_file:
     text_file.write(s)
 with open("/scripts/haproxy.cfg", "w") as text_file:
