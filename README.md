@@ -29,55 +29,9 @@ PROXY_TIMEOUT = 10.0
 
 ## Usage
 
-### Testing
-```
-curl --proxy 127.0.0.1:5566 http://www.google.com
-```
-
-### Build
-```
-sudo docker build -t proxy-rotator-gimme .
-```
-
-### Run:
-Stop and prune if needed:
-```
-docker stop rotating-proxy
-docker container prune
-```
-Run new made image
-```
-docker run -d --name rotating-proxy -p 5577:5577 --privileged proxy-rotator-gimme
-```
-
-Extra filters to gimmeproxy api may be added:
+To build and run a container Makefile should be used:
 ```bash
-docker run -d --name rotating-proxy -p 5577:5577 -e EXTRA_FILTERS='port=3128' --privileged proxy-rotator-gimme
+make all
 ```
 
-## Run for Krasnoe i Beloe optimized
-
-```
-docker run \
-  --env CHECK_URL="https://krasnoeibeloe.ru" \
-  --env CHECK_FOR="Красное" \
-  --restart always \
-  -d --name rotating-proxy -p 5577:5577 \
-  --privileged proxy-rotator-gimme
-```
-
-
-### Parse proxy logs at Docker image:
-```
-docker exec -it rotating-proxy cat /scripts/files/rotatingproxy.log
-```
-
-### Parsed and tested proxies list
-``` 
-docker exec -it rotating-proxy cat /scripts/files/proxies.txt
-```
-
-### What HaProxy config is used?
-```
-docker exec -it rotating-proxy cat /etc/haproxy/haproxy.cfg
-```
+To add new constant servers use `./files/constant_proxies.txt`.
