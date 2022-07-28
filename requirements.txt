@@ -1,3 +1,5 @@
-aiohttp==0.22.5
-asyncio==3.4.3
-requests==2.11.1
+aiohttp
+asyncio
+requests
+yandexcloud
+protobuf==3.20.0
