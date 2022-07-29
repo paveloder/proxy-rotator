@@ -2,16 +2,11 @@ s = """
 global
         log 127.0.0.1   local0
         log 127.0.0.1   local1 notice
-	#local0.*  /var/log/haproxy.log
-        #log /var/log/haproxy.log local0 debug
-        #log loghost    local0 info
         maxconn 4096
         #chroot /usr/share/haproxy
         user haproxy
         group haproxy
         daemon
-        debug
-        #quiet
         stats socket /tmp/haproxy
 
 defaults
@@ -31,7 +26,8 @@ defaults
 frontend rotating_proxies
   bind *:5577
   default_backend tor
-  option http_proxy
+  mode http
+  option httpclose
 
 backend tor
   balance roundrobin """
@@ -40,15 +36,6 @@ import os
 
 hostCount = 1
 
-filepath = os.environ.get("PROXY_FILE") or "./proxies.txt"
-for line in open(filepath):
-    line = line.strip()
-    if len(line) > 0:
-        results = ("\nserver srv{hostCount} {line} " +
-                   "weight 1 maxconn 100 check").format(hostCount=hostCount,
-                                                        line=line)
-        s += results
-        hostCount += 1
 
 for line in open('/scripts/files/constant-proxies.txt'):
     line = line.strip()
