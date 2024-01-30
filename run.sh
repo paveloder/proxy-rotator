@@ -8,6 +8,6 @@ sleep 10
 python /scripts/parse_proxy_list.py
 echo " " >> /etc/haproxy/haproxy.cfg
 echo "Starting service"
-service haproxy restart
+# service haproxy restart
 iptables -D INPUT -p tcp --dport $PORT 5577 -j DROP
-haproxy -f /etc/haproxy/haproxy.cfg -db
+haproxy -d -f /etc/haproxy/haproxy.cfg -db

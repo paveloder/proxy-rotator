@@ -18,8 +18,8 @@ defaults
         option redispatch
         maxconn 2000
         timeout connect 5000
-        timeout client 50000
-        timeout server 50000
+        timeout client 5000000
+        timeout server 5000000
         #clitimeout 50000
         #srvtimeout 50000
 

@@ -8,3 +8,4 @@ stop:
 	docker rm rotating-proxy 2>/dev/null; true
 
 all: build stop run
+
